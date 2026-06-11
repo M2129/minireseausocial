@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "FatmataDev",
+      "email": "fatmata@odcsenegal.sn",
+      "password": "fatmata123",
+      "role": "Développeuse",
+      "avatar": "FD",
+      "avatarColor": "#4F46E5"
+    },
+    {
+      "id": "u2",
+      "name": "Coach Aly",
+      "email": "aly@odc.sn",
+      "password": "aly123",
+      "role": "Formateur ODC",
+      "avatar": "CA",
+      "avatarColor": "#0EA5E9"
+    },
+    {
+      "id": "u3",
+      "name": "Coach Wane",
+      "email": "wane@odc.sn",
+      "password": "wane123",
+      "role": "Formateur ODC",
+      "avatar": "CW",
+      "avatarColor": "#10B981"
+    }
+  ],
+  "posts": [
+    {
+      "id": "p1",
+      "authorId": "u1",
+      "content": "Je viens de terminer mon projet #JavaScript à ODC ! Tellement fière du résultat. Merci à tous ceux qui m'ont soutenue. La prochaine étape: React🚀 #DevWeb #UIUX #ODCSenegal",
+      "image": null,
+      "likes": ["u2", "u3"],
+      "comments": [
+        { "id": "c1", "authorId": "u2", "text": "Félicitations ! Tu as bien travaillé 👏", "createdAt": "2024-12-10T09:00:00Z" },
+        { "id": "c2", "authorId": "u3", "text": "Super projet, continue comme ça !", "createdAt": "2024-12-10T09:30:00Z" }
+      ],
+      "shares": 8,
+      "createdAt": "2024-12-10T08:00:00Z"
+    },
+    {
+      "id": "p2",
+      "authorId": "u2",
+      "content": "Nouvelle session #HTML #CSS démarre lundi ! Inscrivez-vous vite, places limitées. #ODCDakar #Formation",
+      "image": null,
+      "likes": ["u1"],
+      "comments": [],
+      "shares": 3,
+      "createdAt": "2024-12-09T14:00:00Z"
+    }
+  ],
+  "trends": [
+    { "category": "TECHNOLOGY • TRENDING", "tag": "#Web3Sustainability", "posts": "2.4k Posts" },
+    { "category": "DESIGN • TRENDING", "tag": "Glassmorphism", "posts": "13.1k Posts" },
+    { "category": "BUSINESS • NEWS", "tag": "Remote Culture 2.0", "posts": "5.6k Posts" }
+  ]
+}
