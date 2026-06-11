@@ -1,4 +1,4 @@
-// store.js — état global réactif simple
+
 
 const Store = (() => {
   let state = {

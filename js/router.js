@@ -1,4 +1,4 @@
-// router.js — routeur SPA hash-based
+
 
 const Router = (() => {
   const routes = {};

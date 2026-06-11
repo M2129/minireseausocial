@@ -1,4 +1,4 @@
-// data.js — gestion localStorage + seed depuis data.json
+
 
 const DATA_KEY = 'mamad_data';
 const SESSION_KEY = 'mamad_session';
@@ -24,7 +24,6 @@ function setData(data) {
   localStorage.setItem(DATA_KEY, JSON.stringify(data));
 }
 
-// ── Users ──
 function getUsers() { return getData().users; }
 
 function getUserById(id) { return getUsers().find(u => u.id === id) || null; }
@@ -51,7 +50,6 @@ function loginUser(email, password) {
   return getUsers().find(u => u.email === email && u.password === password) || null;
 }
 
-// ── Session ──
 function getSession() {
   const s = localStorage.getItem(SESSION_KEY);
   return s ? JSON.parse(s) : null;
@@ -71,7 +69,6 @@ function getCurrentUser() {
   return getUserById(session.userId);
 }
 
-// ── Posts ──
 function getPosts() {
   return getData().posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
@@ -104,7 +101,7 @@ function toggleLike(postId, userId) {
     post.likes.splice(idx, 1);
   }
   setData(data);
-  return idx === -1; // true = liked, false = unliked
+  return idx === -1;
 }
 
 function addComment(postId, authorId, text) {
@@ -131,10 +128,8 @@ function deletePost(postId, userId) {
   return true;
 }
 
-// ── Trends ──
 function getTrends() { return getData().trends || []; }
 
-// ── Helpers ──
 function timeAgo(dateStr) {
   const now = new Date();
   const d = new Date(dateStr);

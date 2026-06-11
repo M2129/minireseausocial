@@ -1,4 +1,4 @@
-// views/feed.js — vue Fil d'actualité
+
 
 function renderFeedView() {
   const app = document.getElementById('app');
@@ -13,11 +13,9 @@ function renderFeedView() {
   const shell = document.createElement('div');
   shell.className = 'feed-shell';
 
-  // ── TOP NAV ──
   const topnav = buildTopNav(user);
   shell.appendChild(topnav);
 
-  // ── BODY ──
   const body = document.createElement('div');
   body.className = 'feed-body';
 
@@ -27,7 +25,6 @@ function renderFeedView() {
 
   shell.appendChild(body);
 
-  // ── FOOTER ──
   const footer = document.createElement('div');
   footer.className = 'app-footer';
   footer.innerHTML = `
@@ -47,7 +44,6 @@ function renderFeedView() {
   app.appendChild(shell);
 }
 
-// ── Top Nav ──
 function buildTopNav(user) {
   const nav = document.createElement('div');
   nav.className = 'topnav';
@@ -75,11 +71,9 @@ function buildTopNav(user) {
     </span>
   `;
 
-  // Avatar utilisateur dans la nav
   const avatarSlot = nav.querySelector('.topnav-user-avatar');
   avatarSlot.appendChild(Components.renderAvatar(user, 'sm'));
 
-  // Dropdown utilisateur
   const dropdown = buildUserDropdown(user);
   nav.appendChild(dropdown);
 
@@ -91,7 +85,7 @@ function buildTopNav(user) {
   document.addEventListener('click', () => dropdown.classList.remove('open'), { once: false });
   dropdown.addEventListener('click', e => e.stopPropagation());
 
-  // Boutons nav (démo)
+
   nav.querySelector('#nav-messages').addEventListener('click', () => {
     Components.showToast('Messages — bientôt disponible !');
   });
@@ -99,7 +93,6 @@ function buildTopNav(user) {
     Components.showToast('Aucune nouvelle alerte.');
   });
 
-  // Recherche live
   nav.querySelector('#search-input').addEventListener('input', (e) => {
     const q = e.target.value.trim().toLowerCase();
     filterPosts(q);

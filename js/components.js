@@ -1,6 +1,6 @@
-// components.js — fonctions de rendu des composants réutilisables
 
-// ── Toast ──
+
+
 function showToast(message, type = '') {
   let toast = document.getElementById('global-toast');
   if (!toast) {
@@ -16,7 +16,6 @@ function showToast(message, type = '') {
   toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ── Avatar ──
 function renderAvatar(user, size = 'md') {
   const el = document.createElement('span');
   el.className = `avatar avatar-${size}`;
@@ -25,12 +24,10 @@ function renderAvatar(user, size = 'md') {
   return el;
 }
 
-// ── Highlight hashtags ──
 function highlightTags(text) {
   return text.replace(/(#\w+)/g, '<span class="post-tag">$1</span>');
 }
 
-// ── Render post ──
 function renderPost(post, currentUser) {
   const author = DB.getUserById(post.authorId);
   if (!author) return null;
@@ -88,23 +85,19 @@ function renderPost(post, currentUser) {
     </div>
   `;
 
-  // Injecter l'avatar de l'auteur
+  
   const avatarSlot = card.querySelector('.post-header-avatar');
   avatarSlot.appendChild(renderAvatar(author, 'md'));
 
-  // Avatar dans le composer de commentaire
   const composeAvatarSlot = card.querySelector('.comment-compose-avatar');
   composeAvatarSlot.appendChild(renderAvatar(currentUser, 'sm'));
 
-  // Remplir les commentaires existants
   const commentsList = card.querySelector(`#comments-list-${post.id}`);
   post.comments.forEach(c => {
     const commentEl = renderComment(c);
     if (commentEl) commentsList.appendChild(commentEl);
   });
 
-  // Events
-  // Like
   card.querySelector(`[data-like="${post.id}"]`).addEventListener('click', () => {
     const liked = DB.toggleLike(post.id, currentUser.id);
     const btn = card.querySelector(`[data-like="${post.id}"]`);
@@ -117,7 +110,6 @@ function renderPost(post, currentUser) {
     btn.addEventListener('click', () => {}, { once: true });
   });
 
-  // Toggle comments
   const toggleFn = () => {
     const commentsEl = card.querySelector(`#comments-${post.id}`);
     commentsEl.classList.toggle('open');
@@ -126,7 +118,6 @@ function renderPost(post, currentUser) {
   const metaToggle = card.querySelector(`[data-comments-toggle="${post.id}"]`);
   if (metaToggle) metaToggle.addEventListener('click', toggleFn);
 
-  // Envoyer commentaire
   const commentInput = card.querySelector(`[data-comment-input="${post.id}"]`);
   const commentSend = card.querySelector(`[data-comment-send="${post.id}"]`);
   const sendComment = () => {
@@ -148,12 +139,10 @@ function renderPost(post, currentUser) {
   commentSend.addEventListener('click', sendComment);
   commentInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendComment(); });
 
-  // Share
   card.querySelector(`[data-share="${post.id}"]`).addEventListener('click', () => {
     showToast('Lien copié dans le presse-papiers !');
   });
 
-  // Delete post menu
   const menuBtn = card.querySelector(`[data-post-id="${post.id}"]`);
   if (menuBtn) {
     menuBtn.addEventListener('click', (e) => {
